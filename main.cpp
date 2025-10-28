@@ -12,13 +12,8 @@ char* TrouverCaractere(const char* chaine, char caractere);
 
 size_t CompterOccurrences(const char* chaine, char caractere);
 
-void CopierMemoire(void* destination, const void* source, size_t taille);
 
-void InitialiserMemoire(void* zone, unsigned char valeur, size_t taille);
 
-void ExtraireSousChaine(char* destination, const char* source,  size_t debut, size_t longueur);
-
-size_t DiviserChaine(const char* chaine, char separateur, char resultat[][100], size_t max_resultats);
 
 int ComparerChaines(const char* chaine1, const char* chaine2);
 
@@ -58,31 +53,20 @@ int main()
               << CompterOccurrences(message, 'o') << std::endl;
     
     // Test 6: Extraction de sous-chaine
-    char sous_chaine[20];
-    ExtraireSousChaine(sous_chaine, message, 3, 5);
-    std::cout << "6. Sous-chaine (pos 3, longueur 5): '" << sous_chaine << "'" << std::endl;
+    
+    std::cout << "6. Sous-chaine (pos 3, longueur 5): '"<< "'" << std::endl;
     
     // Test 7: Division de chaine
-    char phrase[] = "pomme,orange,banane,kiwi";
-    char fruits[10][100];
-    size_t nb_fruits = DiviserChaine(phrase, ',', fruits, 10);
     
-    std::cout << "7. Division de '" << phrase << "':" << std::endl;
-    for (size_t i = 0; i < nb_fruits; i++) {
-        std::cout << "   [" << i << "] " << fruits[i] << std::endl;
-    }
+    std::cout << "7. Division de '" << "':" << std::endl;
+    
     
     // Test 8: Fonctions memoire
-    char zone1[10] = "ABCDEFGHI";
-    char zone2[10];
-    CopierMemoire(zone2, zone1, 5);
-    zone2[5] = '\0';
-    std::cout << "8. Copie memoire (5 octets): '" << zone2 << "'" << std::endl;
     
-    char zone3[10];
-    InitialiserMemoire(zone3, 'X', 5);
-    zone3[5] = '\0';
-    std::cout << "9. Initialisation memoire: '" << zone3 << "'" << std::endl;
+    std::cout << "8. Copie memoire (5 octets): '"<< std::endl;
+    
+    
+    std::cout << "9. Initialisation memoire: '"<< std::endl;
     
     // Test 10: Comparaison de chaînes
     char chaineA[] = "apple";
@@ -92,11 +76,9 @@ int main()
               << resultat_comparaison << std::endl;
     
     // Test 11: Conversion minuscules
-    char mixte[] = "Hello World!";
-    std::cout << "11. Avant conversion: '" << mixte << "'" << std::endl;
-    ConvertirMinuscules(mixte);
-    std::cout << "    Apres conversion: '" << mixte << "'" << std::endl;
+    std::cout << "11."<< std::endl;
     
+
     // Test 12: Vérification numérique
     char numerique[] = "12345";
     char non_numerique[] = "12a45";
@@ -110,15 +92,17 @@ int main()
 }
 // Initialisation des fonctions 
 
+// Calcule la longueur d'une chaîne de caractères style C
 size_t LongueurChaine(const char* chaine) {
     int i=0;
+
     while (chaine[i] != '\0') {
-        i++;
+       i++;
     }
     return i;
 }
 
-
+// Copie une chaîne source dans une destination
 void CopierChaine(char* destination, const char* source) {
     int i = 0;
     while (source[i] != '\0') {
@@ -128,7 +112,7 @@ void CopierChaine(char* destination, const char* source) {
     destination[i] = '\0';
 }
 
-
+//  Concatène deux chaînes : ajoute source à la fin de destination
 void ConcatenerChaines(char* destination, const char* source) {
     int taille = LongueurChaine(destination);
     int i = 0;
@@ -139,7 +123,7 @@ void ConcatenerChaines(char* destination, const char* source) {
     destination[taille + i] = '\0';
 }
 
-
+// Recherche la première occurrence d'un caractère dans une chaîne
 char* TrouverCaractere(const char* chaine, char caractere) {
     for (int i = 0; chaine[i] != '\0'; i++) {
         if (chaine[i] == caractere) {
@@ -149,85 +133,56 @@ char* TrouverCaractere(const char* chaine, char caractere) {
     return nullptr;
 }
 
+// Compte le nombre d'occurrences d'un caractère dans une chaîne
 size_t CompterOccurrences(const char* chaine, char caractere) {
-    size_t count = 0;
-    for (size_t i = 0; chaine[i] != '\0'; i++) {
-        if (chaine[i] == caractere) {
-            count++;
+    int i = 0;
+    for (int j = 0; chaine[j] != '\0'; j++) {
+        if (chaine[j] == caractere) {
+            i++;
         }
     }
-    return count;
+    return i;
 }
 
-void CopierMemoire(void* destination, const void* source, size_t taille) {
-    char* dest = (char*)destination;
-    const char* src = (const char*)source;
-    for (size_t i = 0; i < taille; i++) {
-        dest[i] = src[i];
-    }
-}
+//Copie un bloc mémoire d'une zone à une autre
 
-void InitialiserMemoire(void* zone, unsigned char valeur, size_t taille) {
-    char* ptr = (char*)zone;
-    for (size_t i = 0; i < taille; i++) {
-        ptr[i] = valeur;
-    }
-}
 
-void ExtraireSousChaine(char* destination, const char* source, size_t debut, size_t longueur) {
-    size_t i;
-    for (i = 0; i < longueur && source[debut + i] != '\0'; i++) {
-        destination[i] = source[debut + i];
-    }
-    destination[i] = '\0';
-}
+// Remplit une zone mémoire avec une valeur spécifique
 
-size_t DiviserChaine(const char* chaine, char separateur, char resultat[][100], size_t max_resultats) {
-    size_t compteur = 0;
-    size_t index_courant = 0;
-    size_t i = 0;
+
+// Extrait une portion d'une chaîne
+
+
+// Divise une chaîne en sous-chaînes selon un séparateur
+
     
-    while (chaine[i] != '\0' && compteur < max_resultats) {
-        if (chaine[i] == separateur) {
-            resultat[compteur][index_courant] = '\0';
-            compteur++;
-            index_courant = 0;
-        } else {
-            resultat[compteur][index_courant] = chaine[i];
-            index_courant++;
-        }
-        i++;
-    }
-    
-    // Dernier élément
-    if (index_courant > 0 && compteur < max_resultats) {
-        resultat[compteur][index_courant] = '\0';
-        compteur++;
-    }
-    
-    return compteur;
-}
+   
 
+// Compare deux chaînes de caractères lexicographiquement
 int ComparerChaines(const char* chaine1, const char* chaine2) {
-    size_t i = 0;
+    int i = 0;
     while (chaine1[i] != '\0' && chaine2[i] != '\0') {
         if (chaine1[i] != chaine2[i]) {
-            return chaine1[i] - chaine2[i];
+            return 0;
         }
         i++;
     }
-    return chaine1[i] - chaine2[i];
+    return 1;
 }
 
-void ConvertirMinuscules(char* chaine) {
-    for (size_t i = 0; chaine[i] != '\0'; i++) {
-        chaine[i] = tolower(chaine[i]);
+// Convertit une chaîne en minuscules (modifie la chaîne originale)
+void ConvertirMinuscules(char* chaine) {}
+
+
+// Vérifie si une chaîne représente un nombre entier
+ bool EstChaineNumerique(const char* chaine) {
+    // Vérifier si la chaîne est vide
+    if (chaine[0] == '\0') {
+        return false;
     }
-}
-
-bool EstChaineNumerique(const char* chaine) {
-    for (size_t i = 0; chaine[i] != '\0'; i++) {
-        if (!isdigit(chaine[i])) {
+    
+    for (int i = 0; chaine[i] != '\0'; i++) {
+        if (chaine[i] < '0' || chaine[i] > '9') {
             return false;
         }
     }
